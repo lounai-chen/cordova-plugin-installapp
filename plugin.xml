@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.ldh.cordova.appinstaller" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>InstallApp</name>
+    <description>Install app</description>
+    <js-module name="InstallApp" src="www/InstallApp.js">
+        <clobbers target="cordova.InstallApp"/>
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="InstallApp">
+                <param name="android-package" value="com.ldh.cordova.appinstaller.InstallApp"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
+            <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+        </config-file>
+        <source-file src="src/android/InstallApp.java" target-dir="src/com/ldh/cordova/appinstaller"/>
+    </platform>
+</plugin>
