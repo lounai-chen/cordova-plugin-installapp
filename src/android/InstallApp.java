@@ -1,9 +1,10 @@
-package fr.smile.mobile.appinstaller;
+package com.ldh.cordova.appinstaller;
+
+import java.io.File;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -24,8 +25,8 @@ public class InstallApp extends CordovaPlugin {
 
     private void install(String path, CallbackContext callbackContext) {
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW).setDataAndType(Uri.parse("file:///sdcard/"+path), "application/vnd.android.package-archive");
-            intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(Intent.ACTION_VIEW).setDataAndType(Uri.fromFile(new File(path)), "application/vnd.android.package-archive");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             cordova.getActivity().startActivity(intent);
             callbackContext.success();
         } catch(Exception e) {
