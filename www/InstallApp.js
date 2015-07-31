@@ -7,4 +7,5 @@ Install.prototype.InstallApp = function (src,onSuccess, onFail) {
 Install.prototype.OpenApp = function (src,onSuccess, onFail) {
     return cordova.exec(onSuccess, onFail,"InstallApp","OpenApp",[src]);
 };
-module.exports = (new Install());
+var appinstall = new Install();
+module.exports = appinstall;
