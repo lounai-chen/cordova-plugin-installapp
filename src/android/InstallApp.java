@@ -31,4 +31,13 @@ public class InstallApp extends CordovaPlugin {
             callbackContext.error(e.toString());
         }
     }
+
+    private void version(String path, CallbackContext callbackContext) {
+        try {
+           PackageManager packageManager = this.cordova.getActivity().getPackageManager();
+           callbackContext.success(packageManager.getPackageInfo(this.cordova.getActivity().getPackageName(), 0).versionCode);
+        } catch(Exception e) {
+            callbackContext.error(e.toString());
+        }
+    }
 }

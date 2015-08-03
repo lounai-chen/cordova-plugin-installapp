@@ -1,1 +1,1 @@
-cordova plugin install apk
+cordova plugin add https://github.com/liadahao/cordova-plugin-installapp.git
