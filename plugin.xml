@@ -29,5 +29,6 @@
           </provider>
         </config-file>
         <source-file src="src/android/InstallApp.java" target-dir="src/com/cty/cordova/appinstaller"/>
+        <source-file src="src/android/xml/provider_paths.xml" target-dir="res/xml" />
     </platform>
 </plugin>
