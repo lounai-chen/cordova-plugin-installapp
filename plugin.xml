@@ -29,6 +29,9 @@
           </provider>
         </config-file>
         <source-file src="src/android/InstallApp.java" target-dir="src/com/cty/cordova/appinstaller"/>
-        <source-file src="src/android/xml/provider_paths.xml" target-dir="res/xml" />
+        <!--
+           cordova-plugin-camera has the same file, will get error. "\res\xml\provider_paths.xml" already exists!
+            <source-file src="src/android/xml/provider_paths.xml" target-dir="res/xml" />
+        -->
     </platform>
 </plugin>
