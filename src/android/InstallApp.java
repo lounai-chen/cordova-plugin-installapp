@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import java.io.File;
 
 public class InstallApp extends CordovaPlugin {
+    private static final String LOG_TAG = "InstallApp";
     private CallbackContext _callbackContext = null;
     private String _path = "";
     
@@ -112,12 +114,12 @@ public class InstallApp extends CordovaPlugin {
     /** 
     * 跳转到设置-允许安装未知来源-页面 
     */  
-   @RequiresApi(api = Build.VERSION_CODES.O)  
+   //@RequiresApi(api = Build.VERSION_CODES.O)  //min android sdk 23以上才支持
    private void startInstallPermissionSettingActivity() {  
        //注意这个是8.0新API  
        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);  
        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-       mContext.startActivity(intent);  
+       cordova.getActivity().startActivity(intent);  
    } 
     
    // private void version(String path, CallbackContext callbackContext) {
