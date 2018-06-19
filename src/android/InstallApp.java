@@ -77,11 +77,11 @@ public class InstallApp extends CordovaPlugin {
                                  // this thread waiting for the user's response! After the user
                                  // sees the explanation, try again to request the permission.
                                  callbackContext.error("permission denied");
-                                 return false;
+                                 return;
                           } else {
                                  // No explanation needed, we can request the permission.
                                  PermissionHelper.requestPermission(this, 1218, Manifest.permission.REQUEST_INSTALL_PACKAGES);
-                                 return true;
+                                 return;
                           }
                        return; 
                     }
