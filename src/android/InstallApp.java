@@ -83,7 +83,7 @@ public class InstallApp extends CordovaPlugin {
                                  PermissionHelper.requestPermission(this, 1218, Manifest.permission.REQUEST_INSTALL_PACKAGES);
                                  return;
                           }
-                       return; 
+                     //  return; 
                     }
                 }
             }
