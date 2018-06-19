@@ -48,6 +48,14 @@ public class InstallApp extends CordovaPlugin {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    boolean hasInstallPermission = this.cordova.getActivity().getPackageManager().canRequestPackageInstalls();
+                    if(!hasInstallPermission){
+                       //ToastUtil.makeText(MyApplication.getContext(), MyApplication.getContext().getString(R.string.string_install_unknow_apk_note), false);  
+                       startInstallPermissionSettingActivity();  
+                       return; 
+                    }
+                }
             }
             cordova.getActivity().startActivity(intent);
             callbackContext.success(path);
@@ -56,7 +64,18 @@ public class InstallApp extends CordovaPlugin {
             callbackContext.error(e.toString());
         }
     }
-
+   
+    /** 
+    * 跳转到设置-允许安装未知来源-页面 
+    */  
+   @RequiresApi(api = Build.VERSION_CODES.O)  
+   private void startInstallPermissionSettingActivity() {  
+       //注意这个是8.0新API  
+       Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);  
+       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
+       mContext.startActivity(intent);  
+   } 
+    
    // private void version(String path, CallbackContext callbackContext) {
       //  try {
           // PackageManager packageManager = this.cordova.getActivity().getPackageManager();
